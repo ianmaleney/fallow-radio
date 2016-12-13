@@ -1,0 +1,61 @@
+---
+layout: default
+---
+<div class="c-show-list__wrapper">
+  {% for show_hash in site.data.shows %}
+  {% assign show = show_hash[1] %}
+    <div class="c-show">
+      <div class="c-show__background-image">
+        <img src="{{ show.background_image }}" alt="{{ show.title }}"/>
+      </div>
+      <div class="c-show__info-wrapper">
+        <h2 class="c-show__title">{{ show.date | date: "%B %Y" }}</h2>
+      </div>
+      <div class="c-show__audio-wrapper">
+        <span class="c-show__play-button js-play is-paused" data-audio="{{ show.audio_path }}">Play</span>
+        <a href="{{ show.audio_path }}" download="{{ show.title }}">Download</a>
+
+      </div>
+      <div class="c-show__tracklist-wrapper">
+        <span class="c-show__tracklist--header js-tracklist-toggle">Tracklist</span>
+        <ul class="c-show__tracklist js-tracklist-visible">
+          <div class="c-show__tracklist--close js-tracklist-close">Close</div>
+          {% for artist in show.tracklist.artists %}
+          <li>
+            <span class="c-show__artist">
+              {{ artist }}
+            </span> -
+            <span class="c-show__track-title">
+              '{{ show.tracklist.track_titles[forloop.index0] }}'
+            </span>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="c-footer-audio__wrapper">
+  <audio id="c-footer-audio__player" type="audio/mpeg" ontimeupdate="updateTrackTime(this);">Your browser does not support the audio element</audio>
+  <div class="c-footer-audio__play-pause js-footer-audio__play-pause">
+    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" width="1000" height="1000" viewBox="0 0 1000 1000"><path id="Play" fill-rule="evenodd" d="M421 501.04c0-31.65.6-63.32-.3-94.94-.38-13.48 12.24-21.12 24.68-14.15 52.1 29.2 104.55 57.77 156.87 86.58 6.13 3.37 12.22 6.78 18.4 10.07 4.9 2.62 8.2 6.4 8.3 12.1.13 5.95-3.2 9.82-8.27 12.6-58.9 32.4-117.75 64.87-176.67 97.23-11.8 6.5-23-.17-23-13.55v-95.94z" clip-rule="evenodd"/><path id="Pause" d="M420.7 388.14h55.23v223.72H420.7zm123.74 0h55.23v223.72h-55.23z"/></svg>
+  </div>
+  <div class="c-footer-audio__progress">
+    <span class="c-footer-audio--elapsed"></span> / <span class="c-footer-audio--duration"></span>
+  </div>
+  <div class="c-footer-audio__volume-wrapper">
+    <p>Vol:</p>
+    <input id="vol-control" class="c-footer-audio__volume js-audio-volume" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)" onchange="SetVolume(this.value)"></input>
+  </div>
+  <button class="c-footer-audio--close js-audio-close">Close</button>
+</div>
+
+<div class="c-modal--about">
+  <div class="c-modal__popup">
+    <h3>About Fallow Radio</h3>
+    <p>Fallow Radio is a monthly radio show on <a href="http://www.raidionalife.ie/" target="_blank" rel="noopener">Raidió Na Life</a>. It is broadcast on the first Saturday of every month, from 10.30pm to midnight.</p>
+    <p>A <a href="http://fallowmedia.com" target="_blank" rel="noopener">Fallow Media</a> project.</p>
+  </div>
+</div>
+<button class="c-modal__button js-modal-toggle">About</button>

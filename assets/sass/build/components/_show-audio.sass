@@ -1,0 +1,89 @@
+.c-show__audio-wrapper
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  span, a
+    mix-blend-mode: normal
+    z-index: 2
+    color: currentColor
+    text-decoration: none
+    padding: 5px 10px
+    margin: 20px 10px
+    cursor: pointer
+    border: 1px solid currentColor
+    +font
+    &:hover
+      filter: invert(1)
+
+.c-footer-audio__wrapper
+  position: fixed
+  display: flex
+  justify-content: center
+  align-items: center
+  bottom: 0
+  left: 0
+  width: 100vw
+  height: 80px
+  background-color: black
+  z-index: 10
+  opacity: 1
+  transition: transform 0.3s ease-in
+  transform: translateY(80px)
+  color: white
+  +font
+  @media (max-width: 800px)
+    height: 120px
+    font-size: 10px
+    transform: translateY(120px)
+
+.c-footer-audio__wrapper.is-visible
+  transform: translateY(0)
+
+.c-footer-audio--close
+  position: absolute
+  color: white
+  text-align: center
+  border: 1px solid currentColor
+  cursor: pointer
+  background-color: rgba(0,0,0,0)
+  z-index: 20
+  top: 10px
+  right: 20px
+  +font($FS-Small)
+  padding: 5px
+  @media (max-width: 800px)
+    font-size: 12px
+
+.c-footer-audio__play-pause
+  border: none
+  svg
+    fill: white
+    width: 80px
+    height: 80px
+    #Play
+      opacity: 1
+    #Pause
+      opacity: 0
+  svg.is-playing
+    #Play
+      opacity: 0
+    #Pause
+      opacity: 1
+
+.c-footer-audio__progress
+  margin-left: 10px
+  margin-right: 10px
+
+.c-footer-audio__volume-wrapper
+  display: flex
+  padding: 0 20px
+  align-items: center
+  p
+    display: inline-block
+    margin-right: 10px
+
+.c-footer-audio__volume
+  width: 100px
+  background-color: white

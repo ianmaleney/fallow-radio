@@ -1,0 +1,26 @@
+$colors_map: ( "coral": #FF8B8B, "lightCream": #f9f8e6, "lightGreen": #62bfad, "lightBlue": #b7e3e4, "red": #f03f35, "darkBlue": #005397, "pink": #f3c9dd, "magnolia": #facbc1)
+
+$background_colors_list: ( #FF8B8B, #f9f7e8, #ffffff, #b7e3e4, #facbc1, #fdf06f, #283470, #e88565, #f4c7ee, #3a455b, #178e96, #19aad1, #4f3a4b, #f8ebee, #002efd, #010508, #39205a)
+$colors_list: ( #f9f8e6, #62bfad, #61bfad, #f03f35, #000000, #d31b33, #15a29c, #000000, #008fd3, #3a455b, #fde3c8, #ffcc4c, #e75152, #0c3934, #cdffcc, #000000, #17e1e3)
+
+@for $i from 1 through length($colors-list)
+  .c-show:nth-of-type(#{$i})
+    background-color: nth($background_colors_list, $i)
+    color: nth($colors_list, $i)
+    @if lightness(nth($colors_list, $i)) < 20
+      .c-show__tracklist
+        color: white
+
+
+// Font Sizes
+
+$FS-Base: 1.2rem
+$FS-Heading: 2.5rem
+$FS-Small: 1rem
+
+$sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif
+
+=font($font-size: $FS-Base, $font-family: $sans, $font-weight: normal)
+  font-size: $font-size
+  font-family: $font-family
+  font-weight: $font-weight
